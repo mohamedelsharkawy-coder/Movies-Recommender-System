@@ -2,11 +2,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
+import os
 
 ############################ Preparations ###################################
 
 # Read ratings and movies dataframes
-ratings = pd.read_csv('ratings.csv')
+ratings = pd.read_csv(os.path.join("Deployment", "ratings.csv"))
 movies = pd.read_csv('movies.csv')
 
 # Merge both dataframes in 1 dataframe
