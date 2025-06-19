@@ -8,7 +8,7 @@ import os
 
 # Read ratings and movies dataframes
 ratings = pd.read_csv(os.path.join("Deployment", "ratings.csv"))
-movies = pd.read_csv('movies.csv')
+movies = pd.read_csv(os.path.join("Deployment", "movies.csv"))
 
 # Merge both dataframes in 1 dataframe
 data = pd.merge(ratings, movies, on="movieId")
@@ -30,7 +30,7 @@ item_similarity_df = pd.DataFrame(item_similarity, index=user_item_filled.column
 
 # Load the model
 try:
-    with open('Best_model.pkl', 'rb') as f:
+    with open(os.path.join("Deployment", 'Best_model.pkl'), 'rb') as f:
         model = pickle.load(f)
 except FileNotFoundError:
     print("Warning: Best_model.pkl not found. Please make sure the model file is in the correct directory.")

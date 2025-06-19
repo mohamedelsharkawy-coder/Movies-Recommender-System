@@ -5,6 +5,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 from recommendation import get_top_k_recommendations_df, movie_similarities, model, SAMPLE_MOVIES
+import os
 
 # Configure page
 st.set_page_config(
@@ -125,15 +126,15 @@ st.markdown("""
 @st.cache_data
 def load_data():
     # Load users
-    users_df = pd.read_csv('sample_users.csv')
+    users_df = pd.read_csv(os.path.join("Deployment", 'sample_users.csv'))
     users = users_df.to_dict(orient='records')
     
     # Load movies
-    movies_df = pd.read_csv('movies.csv')
+    movies_df = pd.read_csv(os.path.join("Deployment", 'movies.csv'))
     movies = movies_df.to_dict(orient='records')
     
     # Load user history
-    with open('user_history.json', 'r', encoding='utf-8') as f:
+    with open(os.path.join("Deployment", 'user_history.json'), 'r', encoding='utf-8') as f:
         user_history = json.load(f)
     user_history = {int(k): v for k, v in user_history.items()}
     
